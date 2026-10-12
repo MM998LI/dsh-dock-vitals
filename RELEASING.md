@@ -26,10 +26,10 @@ So the order is driven by one rule: **create the repository first**, then do
 everything else inside that 24 hour window, then submit.
 
 ```
-Day 0   1. create repository + push + add the dsh-plugin topic   <- timer starts
-        2. publish to npm
-        3. cut the GitHub Release with the tarball
-Day 1   4. after 24h, open the listing PR
+Day 0   1. create repository + push + add the dsh-plugin topic   <- timer starts   DONE 2026-10-12 20:43
+        2. publish to npm                                                          DONE 2026-10-12 22:02
+        3. cut the GitHub Release with the tarball                                 DONE 2026-10-12 21:32
+Day 1   4. after 24h, open the listing PR        <- not before 2026-10-13 20:43:17 local
 Day 1+  5. CI + maintainer review, then it shows up in the market
 ```
 
@@ -51,10 +51,10 @@ node --check lib/index.js && node --check lib/gpu.js && node --check lib/client.
 npm pack --dry-run --cache D:\DSharness\_npmcache
 ```
 
-- [ ] Delete the development backups in `lib/` (`*.bak-*`). They are gitignored, but they have no business in a release tree.
-- [ ] `npm pack --dry-run` lists exactly nine files: `CHANGELOG.md`, `LICENSE`, `README.md`, `README.zh.md`, `cordis.patch.yml`, `lib/client.js`, `lib/gpu.js`, `lib/index.js`, `package.json`.
-- [ ] `repository` / `homepage` / `bugs` in `package.json` match the final repository name.
-- [ ] `node_modules/` is **not** committed. It contains a junction into this machine's profile, which would be broken for everyone else.
+- [x] Delete the development backups in `lib/` (`*.bak-*`). They are gitignored, but they have no business in a release tree.
+- [x] `npm pack --dry-run` lists exactly nine files: `CHANGELOG.md`, `LICENSE`, `README.md`, `README.zh.md`, `cordis.patch.yml`, `lib/client.js`, `lib/gpu.js`, `lib/index.js`, `package.json`.
+- [x] `repository` / `homepage` / `bugs` in `package.json` match the final repository name.
+- [x] `node_modules/` is **not** committed. It contains a junction into this machine's profile, which would be broken for everyone else.
 
 ### 1. Create the repository
 
@@ -74,7 +74,7 @@ git remote add origin https://github.com/MM998LI/dsh-dock-vitals.git
 git push -u origin main
 ```
 
-- [ ] Add the **`dsh-plugin`** topic to the repository (required by the listing), plus `deepseek-harness` for discoverability.
+- [x] Add the **`dsh-plugin`** topic to the repository (required by the listing), plus `deepseek-harness` for discoverability.
 
 ### 2. Publish to npm
 
@@ -84,8 +84,13 @@ npm publish --cache D:\DSharness\_npmcache
 npm view dsh-dock-vitals version
 ```
 
-- [ ] The npm page links back to `MM998LI/dsh-dock-vitals`.
-- [ ] `publishConfig.registry` pins the official registry, so a local mirror setting cannot redirect the publish.
+Two things that bit us here, both worth knowing before the next release:
+
+- **The account has no 2FA, and a granular token does not bypass it unless you say so.** The token must be created with *Bypass two-factor authentication (2FA)* checked, packages-and-scopes permission set to *Read and write (publish and stage)*, and scope set to *All packages*. Anything less publishes read-only and fails with `E403`. Tokens generated this way expire in 7 days.
+- **A failed-looking publish can have succeeded.** npm's progress output can swallow the result and exit non-zero while the upload lands. Re-running then reports `You cannot publish over the previously published versions: 0.1.0.` — that message means it worked. A `0.0.0-stage` placeholder version also appears in the registry; it is normal.
+
+- [x] The npm page links back to `MM998LI/dsh-dock-vitals`.
+- [x] `publishConfig.registry` pins the official registry, so a local mirror setting cannot redirect the publish.
 
 ### 3. Cut the GitHub Release
 
@@ -93,10 +98,14 @@ npm view dsh-dock-vitals version
 npm pack --cache D:\DSharness\_npmcache
 ```
 
-- [ ] Create tag `v0.1.0` with title `0.1.0`, release notes copied from `CHANGELOG.md`.
-- [ ] Attach the produced `dsh-dock-vitals-0.1.0.tgz` as a release asset.
+- [x] Create tag `v0.1.0` with title `0.1.0`, release notes copied from `CHANGELOG.md`.
+- [x] Attach the produced `dsh-dock-vitals-0.1.0.tgz` as a release asset.
 
 ### 4. Submit to the listing (after the repository is 24 hours old)
+
+Earliest allowed: **2026-10-13 20:43:17 local** — the repository was created at
+`2026-10-12T12:43:17Z`, and the CI reads `created_at`, so opening the PR a minute
+early fails even with a perfect entry.
 
 - [ ] Fork `awesome-dsh-plugin/awesome-dsh-plugin`.
 - [ ] Add `data/plugins/MM998LI__dsh-dock-vitals.yml` — the contents of `contributing/awesome-dsh-plugin.yml` in this repository.
