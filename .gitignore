@@ -1,0 +1,23 @@
+# 依赖与构建产物
+node_modules/
+*.tgz
+*.tar.gz
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 日志与临时文件
+*.log
+npm-debug.log*
+pnpm-debug.log*
+.cache/
+tmp/
+temp/
+
+# 本地备份（曾用来回滚手改的 client.js）
+*.bak
+*.bak-*
+*.orig

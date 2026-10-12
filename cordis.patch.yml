@@ -1,0 +1,8 @@
+# dsh-dock-vitals bundle patch
+#
+# 在 profile 里挂载插件行。entry 的 id 就是本插件 settings 的命名空间，
+# 改成别的名字设置页就会读到另一个命名空间去 —— 想改 id 请同步改
+# lib/index.js 的 SETTINGS_NAMESPACE 与 lib/client.js 的 SETTINGS_NAMESPACE。
+- insert:
+    - id: dock-vitals
+      name: dsh-dock-vitals

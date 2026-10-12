@@ -1,0 +1,71 @@
+{
+  "name": "dsh-dock-vitals",
+  "version": "0.1.0",
+  "description": "Live CPU, memory and GPU readout in the DeepSeek Harness composer status bar: a clickable badge with a details panel, per-metric toggles and three refresh speeds in settings.",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "system-monitor",
+    "resource-monitor",
+    "cpu",
+    "memory",
+    "gpu",
+    "status-bar",
+    "nvidia",
+    "amd",
+    "apple-silicon"
+  ],
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "MM998LI",
+    "url": "https://github.com/MM998LI"
+  },
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/gpu.js",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MM998LI/dsh-dock-vitals.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MM998LI/dsh-dock-vitals/issues"
+  },
+  "homepage": "https://github.com/MM998LI/dsh-dock-vitals#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "engines": {
+    "node": ">=22",
+    "dsh": ">=0.2.0-rc.1"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.1"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  }
+}
