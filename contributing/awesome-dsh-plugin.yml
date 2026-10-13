@@ -2,7 +2,7 @@
 #
 # How to use: copy this file into a fork of that repository as
 #   data/plugins/MM998LI__dsh-dock-vitals.yml
-# and open a pull request. One file, four fields — that is the whole submission.
+# and open a pull request. One file, five fields — that is the whole submission.
 # The two READMEs are generated from data/plugins/*.yml; never edit them by hand.
 #
 # Do NOT hand-write an `npm:` key. The registry mapping (npm package + download
@@ -13,13 +13,17 @@
 #   url        must match the repository exactly
 #   name       owner/repo
 #   category   one of: agi ui usage theme model identity session memory tools wsl
-#              browser vision voice docs skill workflow git notify dev security
+#              browser vision voice skill workflow git notify dev security
 #              remote market fun   (themes and skins MUST use `theme`)
+#   tarball    optional. Points at a GitHub Release asset and is the fallback
+#              when npm is unreachable. Verified against the upstream entry
+#              0QwQ0__dsh-ui-auth.yml, which carries the same field.
 #   description.en   the only required field, one line, ends with a period
 
 url: https://github.com/MM998LI/dsh-dock-vitals
 name: MM998LI/dsh-dock-vitals
 category: ui
+tarball: https://github.com/MM998LI/dsh-dock-vitals/releases/download/v0.1.1/dsh-dock-vitals-0.1.1.tgz
 description:
   en: 'Live CPU, memory and GPU readout in the DeepSeek Harness composer status bar — a clickable badge with a details panel, per-metric toggles, and three refresh speeds.'
   zh: '在输入框下方的状态栏里实时显示 CPU、内存与 GPU 读数：可点击的徽章、详情面板、逐项开关与三档刷新速度。'
