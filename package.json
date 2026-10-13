@@ -1,6 +1,6 @@
 {
   "name": "dsh-dock-vitals",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Live CPU, memory and GPU readout in the DeepSeek Harness composer status bar: a clickable badge with a details panel, per-metric toggles and three refresh speeds in settings.",
   "keywords": [
     "deepseek-harness",
